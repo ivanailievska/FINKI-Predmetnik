@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/logo-large.png"/>
+    <title>Финки предметник</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .header {
+            background-image: url('../images/header-bg.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .home-icon {
+            opacity: 60%;
+        }
+
+        .home-icon:hover {
+            opacity: 100%;
+        }
+
+        .logo {
+            max-width: 400px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: transparent !important;
+            border: none;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .search-input {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            opacity: 30%;
+        }
+
+        .logout-container{
+            cursor: pointer;
+        }
+
+        .logout {
+            color: dimgray;
+            padding-left: 10px;
+        }
+
+        .form-control::placeholder {
+            color: #cccccc;
+        }
+
+        .nav-link {
+            color: dimgray;
+        }
+
+        .nav-item {
+            padding-right: 20px;
+        }
+
+        .custom-button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .custom-button {
+            color: red;
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+
+        .custom-button:active {
+            background-color: red;
+            color: white;
+        }
+
+
+        <img src="images/header-bg.png"/><img src="images/header-bg.png"/></style>
+</head>
+<body>
+<header class="header">
+    <!-- Logout-->
+    <div class="float-end">
+        <div class="logout-container d-flex justify-content-between">
+            <img src="images/logout-icon.png" height="18" width="18" style="opacity: 60%"/>
+            <div class="logout">Одјави се</div>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <img src="../images/logo.png" alt="Logo" class="logo mx-auto d-block">
+
+    <!-- Navbar -->
+    <div class="container px-0">
+        <nav class="navbar navbar-expand-lg navbar-light center-navbar ">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <img class="home-icon" src="images/home-icon.png" height="20" width="20"/><span
+                                class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Сите предмети</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Филтрирај</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Мои предмети</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link custom-button" href="#">Модифицирај</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 ms-auto">
+                    <div class="input-group search-input">
+                        <input class="form-control mr-sm-2 rounded" type="search" placeholder="Пребарај предмет"
+                               aria-label="Search">
+                        <div class="input-group-append">
+                            <span class="input-group-text search-icon bg-white border-0"><i
+                                    class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

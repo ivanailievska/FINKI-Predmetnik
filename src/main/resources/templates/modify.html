@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Styling</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ddd;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 1000px;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-btn {
+            color: #333;
+            border-radius: 20px;
+            border: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            display: block;
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .custom-btn:hover {
+            background-color: #ccc; /* Боја на позадина при прелистување */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mb-5 mt-5 text-center">
+    <a href="/admin/add-course" class="btn btn-block custom-btn" style="background-color: #add8e6;;">Додај курс</a>
+    <a href="/admin/add-professor" class="btn btn-block custom-btn" style="background-color: #adb5bd">Додај професор</a>
+    <a href="/admin/add-preference" class="btn btn-block custom-btn" style="background-color: #98fb98;">Додај преферанца</a>
+</div>
+
+</body>
+</html>

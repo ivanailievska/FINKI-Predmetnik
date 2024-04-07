@@ -1,6 +1,7 @@
 package com.finki.ukim.mk.predmetnik.service.impl;
 
 import com.finki.ukim.mk.predmetnik.models.Program;
+import com.finki.ukim.mk.predmetnik.repository.ProgramRepository;
 import com.finki.ukim.mk.predmetnik.service.ProgramService;
 import org.springframework.stereotype.Service;
 

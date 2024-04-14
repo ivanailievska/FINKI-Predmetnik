@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fragments/images/logo-large.png"/>
+    <title>Додади преференца</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgb(66, 255, 0, 0.2);
+            padding:40px;
+            border-radius: 10px;
+            width: 1000px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+        h3 {
+            padding-left: 15px;
+            font-size: 26px;
+            font-weight: lighter;
+        }
+        .wrapper {
+            padding: 40px;
+        }
+        .form-control {
+            width: 100%;
+            height: 77px;
+            border-radius: 15px;
+            border: none;
+        }
+        .form-outline input[type="text"]::placeholder {
+            font-weight: lighter;
+            font-size: 20px;
+            padding-left:15px;
+        }
+        .select-label {
+            font-size: 18px;
+            font-weight: lighter;
+            display: inline-block;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .select {
+            width: 50%;
+            border: none;
+            border-radius: 15px;
+        }
+        .select option {
+            font-weight: lighter;
+            font-size: 16px;
+            padding: 10px;
+        }
+        .btn {
+            margin-top: 25px;
+            margin-left: 5px;
+            background-color: #1C1C1C;
+            color: #FFFFFF;
+            border-radius: 15px;
+            width: 132px;
+            height: 35px;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+            font-size: 12px;
+            font-weight: lighter;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+    <body>
+    <section class="intro">
+        <div class="container">
+            <div class="wrapper">
+             <h3 class="preference">Додади преференца</h3>
+
+            <form method="post" th:action="@{/admin/add-preference}">
+
+                <div class="row">
+                        <div class="form-outline">
+                            <label class="form-label" for="preferenceName"></label>
+
+                            <input type="text" name="preferenceName" id="preferenceName" placeholder="Име"
+                                                       class="form-control"/>
+                        </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label class="form-label select-label">Одбери курсеви во преференца</label>
+                    </div>
+                    <div>
+                        <select class="select" multiple name="courses">
+                            <option th:each="course : ${courses}" th:value="${course.getID()}" th:text="${course.getName()}">One</option>
+                        </select>
+                    </div>
+                    <div class="mt-4">
+                        <input class="btn btn-warning btn-lg" type="submit" value="Додади"/>
+                    </div>
+                </div>
+
+            </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

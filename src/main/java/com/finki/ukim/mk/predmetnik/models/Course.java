@@ -24,7 +24,7 @@ public class Course {
     private Integer year;
 
     @OneToMany
-    private List<Preference> comments;
+    private List<Comment> comments;
 
     @ManyToMany(mappedBy = "teachingCourses")
     private List<Professor> professor;
@@ -35,7 +35,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(Integer ID, String name, Integer year, List<Preference> comments) {
+    public Course(Integer ID, String name, Integer year, List<Comment> comments) {
         this.ID = ID;
         this.name = name;
         this.year = year;

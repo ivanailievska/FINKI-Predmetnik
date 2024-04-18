@@ -9,6 +9,8 @@ import com.finki.ukim.mk.predmetnik.models.Role;
 import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.repository.StudentRepository;
 import com.finki.ukim.mk.predmetnik.service.StudentService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void save(Student student) {
         this.studentRepository.save(student);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return this.studentRepository.findById(Integer.parseInt(username)).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.finki.ukim.mk.predmetnik.web;
 import com.finki.ukim.mk.predmetnik.models.Personal;
 import com.finki.ukim.mk.predmetnik.service.CourseService;
 import com.finki.ukim.mk.predmetnik.service.PersonalService;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

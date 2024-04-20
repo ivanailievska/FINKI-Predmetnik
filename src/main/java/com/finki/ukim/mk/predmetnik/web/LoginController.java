@@ -4,7 +4,7 @@ import com.finki.ukim.mk.predmetnik.exceptions.exceptions.InvalidArgumentsExcept
 import com.finki.ukim.mk.predmetnik.exceptions.InvalidUserCredentialsException;
 import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.service.AuthService;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -5,7 +5,7 @@ import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.service.CommentService;
 import com.finki.ukim.mk.predmetnik.service.CourseService;
 import com.finki.ukim.mk.predmetnik.service.StudentService;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

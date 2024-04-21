@@ -4,24 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="fragments/images/logo-large.png">
+    <meta http-equiv="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fragments/images/header-bg.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Comments and Login Form</title>
     <style>
+        :root {
+            --light-blue: rgba(173, 216, 230, 0.5);
+        }
+
         body {
             margin: 0;
             padding: 0;
+            background-image: url('fragments/images/header-bg.png');
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .container {
-            background-color: #dbe0e6;
+            background-image: url('fragments/images/header-bg.png');
+            background-color: rgba(0, 51, 102, 0.2);
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
             padding: 40px;
             border-radius: 10px;
             max-width: 1000px;
@@ -33,100 +41,69 @@
             align-items: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             font-size: 20px;
+            color: #fff;
         }
 
         h2 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-size: 30px;
             text-align: center;
         }
 
-        .comment {
-            margin-bottom: 50px;
-            text-align: left;
-            width: 100%;
-            width: calc(100% - 400px);
-            flex-grow: 1;
-            padding: 20px 40px;
-            margin-top: 30px;
-            margin-right: 100px;
-        }
 
-        .author {
-            font-size: 20px;
-            background-repeat: no-repeat;
-            background-size: 15px 15px;
-            background-position: right 5px center;
-            padding-right: 20px;
-        }
-
-        .timestamp {
-            color: #6c757d;
-            font-size: 13px;
-            margin-bottom: 50px;
-        }
-
-        .like-dislike-buttons {
-            margin-top: 10px;
-        }
-
-        .like-dislike-buttons button {
-            display: inline-block;
-            margin-right: 10px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #6c757d;
-        }
-
-        .comment-body {
-            font-size: 30px;
-        }
-
-        /* Additional styles for the login form */
         .form-outline {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        .form-label {
-            display: none;
+        .form-control {
+            width: 350px;
+            height: 50px;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin-top: 20px;
         }
+
 
         .btn-primary {
             padding-left: 2.5rem;
             padding-right: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            width: 175px;
         }
 
         .text-center a {
-            color: #dc3545;
+            color: white;
         }
     </style>
 </head>
 
 <body>
 <div class="container mb-5 mt-5 text-center">
-    <h2>Добредојдовте на ФИНКИ Предметник</h2>
+    <h2>Добредојдовте на <strong>ФИНКИ</strong> предметник</h2>
 
-    <!-- Login Form -->
     <form action="login" method="post" class="mt-4 text-center">
-        <!-- Email input -->
         <div class="form-outline mb-4">
             <input type="text" id="index" name="username" class="form-control form-control-lg"
-                   placeholder="Внесете го вашиот индекс" />
+                   placeholder="Индекс" />
             <label class="form-label mt-2" for="index" style="display: none">Индекс</label>
         </div>
 
-        <!-- Password input -->
+
         <div class="form-outline mb-3">
             <input type="password" id="password" name="password" class="form-control form-control-lg"
-                   placeholder="Внесете валидна лозинка" />
+                   placeholder="Лозинка" />
             <label class="form-label mt-2" for="password" style="display: none">Лозинка</label>
         </div>
 
         <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-primary btn-lg">Најави се</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Нов студент? <a href="/register" class="link-danger">Регистрирај се!</a></p>
+            <p class="small fw-bold mt-2 pt-1 mb-0">Нов студент? <a href="/register" >Регистрирај се!</a></p>
         </div>
     </form>
 </div>

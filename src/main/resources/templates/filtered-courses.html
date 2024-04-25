@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fragments/images/logo-large.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Филтрирани предмети</title>
+    <style>
+        .card {
+            background-color: #ddd;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            overflow: hidden;
+            border: none
+        }
+        .pb-4 {
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            background-color: #ddd;
+
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .list-group-item{
+            background-color: #ddd;
+            border: none;
+        }
+
+        .card-header {
+            background-color: #6D9BC3;
+            color: white;
+            padding: 20px;
+            border: none
+        }
+
+        .card-footer {
+            margin-left: 15px;
+            background-color: #ddd;
+            border-top: 0;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #6D9BC3;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .btn-secondary {
+            background-color: #6D9BC3;
+            border: none;
+            border-radius: 15px;
+            width: 190px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container mb-4">
+    <div class="row">
+        <div class="table-responsive">
+            <div class="container">
+                <section id="services" class="services section-bg">
+                    <div class="container">
+                        <h3 class="mt-4 md-4">Задолжителни предмети според насоката:</h3>
+                        <div class="row pb-4" style="background-color: #eeeeee">
+                            <div th:each="mandatory : ${mandatories}"
+                                 class="col-lg-4 col-md-6 mt-4 m4-md-0">
+                                <div class="card">
+                                    <div class="card-header h4" th:text="${mandatory.getName()}">
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Коментари(<span
+                                                th:text="${mandatory.getComments().size()}"></span>)</h6>
+                                        <p class="card-text">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Година: <i th:text="${mandatory.getYear()}"></i>
+                                            </li>
+                                            <li class="list-group-item">Професори:
+                                                <ul class="list-unstyled">
+                                                    <li class="d-inline" th:each="professor : ${mandatory.getProfessor()}">
+                                                        <i><a th:text="${professor.getFullName()}"
+                                                              th:href="${professor.getLink()}" target="_blank"></a> </i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <a class="card-link btn-sm btn-primary text-white text-center col-3"
+                                               th:href="@{'/courses/details/{id}' (id=${mandatory.getID()})}">Детали</a>
+                                            <form th:method="POST"
+                                                  th:action="@{'/personal/add-course/{id}' (id=${mandatory.getID()})}"
+                                                  class="col">
+                                                <button type="submit" class="card-link btn-sm btn-secondary text-white">
+                                                    Додади предмет
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h3 class="mt-4 md-4">Изборни предмети според преференца:</h3>
+                        <div class="row pb-4" style="background-color: #e7effd">
+                            <div th:each="electory : ${electorials}"
+                                 class="col-lg-4 col-md-6 mt-4 m4-md-0">
+                                <div class="card">
+                                    <div class="card-header h4" th:text="${electory.getName()}">
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Коментари(<span
+                                                th:text="${electory.getComments().size()}"></span>)</h6>
+                                        <p class="card-text">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Година: <i th:text="${electory.getYear()}"></i>
+                                            </li>
+                                            <li class="list-group-item">Професори:
+                                                <ul class="list-unstyled">
+                                                    <li class="d-inline" th:each="professor : ${electory.getProfessor()}">
+                                                        <i><a th:text="${professor.getFullName()}"
+                                                              th:href="${professor.getLink()}" target="_blank"></a> </i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <a class="card-link btn-sm btn-primary text-white text-center col-3"
+                                               th:href="@{'/courses/details/{id}' (id=${electory.getID()})}">Детали</a>
+                                            <form th:method="POST"
+                                                  th:action="@{'/personal/add-course/{id}' (id=${electory.getID()})}"
+                                                  class="col">
+                                                <button type="submit" class="card-link btn-sm btn-secondary text-white">
+                                                    Додади предмет
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h3 class="mt-4 md-4">Останати изборни предмети:</h3>
+                        <div class="row pb-4" style="background-color: rgba(255,228,181,0.58)">
+                            <div th:each="other : ${others}"
+                                 class="col-lg-4 col-md-6 mt-4 m4-md-0">
+                                <div class="card">
+                                    <div class="card-header h4" th:text="${other.getName()}">
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Коментари(<span
+                                                th:text="${other.getComments().size()}"></span>)</h6>
+                                        <p class="card-text">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Година: <i th:text="${other.getYear()}"></i>
+                                            </li>
+                                            <li class="list-group-item">Професори:
+                                                <ul class="list-unstyled">
+                                                    <li class="d-inline" th:each="professor : ${other.getProfessor()}">
+                                                        <i><a th:text="${professor.getFullName()}"
+                                                              th:href="${professor.getLink()}" target="_blank"></a> </i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <a class="card-link btn-sm btn-primary text-white text-center col-3"
+                                               th:href="@{'/courses/details/{id}' (id=${other.getID()})}">Детали</a>
+                                            <form th:method="POST"
+                                                  th:action="@{'/personal/add-course/{id}' (id=${other.getID()})}"
+                                                  class="col">
+                                                <button type="submit" class="card-link btn-sm btn-secondary text-white">
+                                                    Додади предмет
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/logo-large.png"/>
     <title>Финки предметник</title>
@@ -94,46 +93,50 @@
 <body>
 <header class="header">
     <!-- Logout-->
-    <div class="float-end">
-        <div class="logout-container d-flex justify-content-between">
+    <div class="float-end" >
+        <div class="logout-container d-flex justify-content-between" >
+            <a  th:href="@{/logout}">
             <img src="images/logout-icon.png" height="18" width="18" style="opacity: 60%"/>
             <div class="logout">Одјави се</div>
+            </a>
         </div>
     </div>
 
     <!-- Logo -->
+    <a href="https://finki.ukim.mk/">
     <img src="images/logo.png" alt="Logo" class="logo mx-auto d-block">
-
+    </a>
     <!-- Navbar -->
     <div class="container px-0">
         <nav class="navbar navbar-expand-lg navbar-light center-navbar ">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="../master-template.html">
                             <img class="home-icon" src="images/home-icon.png" height="20" width="20"/><span
                                 class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Сите предмети</a>
+                        <a class="nav-link"th:href="@{/courses}">Сите предмети</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Филтрирај</a>
+                        <a class="nav-link" th:href="@{/courses/filtered}">Филтрирај</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Мои предмети</a>
+                        <a class="nav-link" th:href="@{/personal}">Мои предмети</a>
                     </li>
+                    <th:block th:authorize="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
-                        <a class="nav-link custom-button" href="#">Модифицирај</a>
+                        <a class="nav-link custom-button" th:href="@{/admin}">Модифицирај</a>
                     </li>
+                    </th:block>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 ms-auto">
+                <form class="form-inline my-2 my-lg-0 ms-auto" th:action="@{/search}" method="GET">
                     <div class="input-group search-input">
                         <input class="form-control mr-sm-2 rounded" type="search" placeholder="Пребарај предмет"
-                               aria-label="Search">
+                               aria-label="Search" name="query" />
                         <div class="input-group-append">
-                            <span class="input-group-text search-icon bg-white border-0"><i
-                                    class="fa fa-search"></i></span>
+                            <span class="input-group-text search-icon bg-white border-0"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
                 </form>

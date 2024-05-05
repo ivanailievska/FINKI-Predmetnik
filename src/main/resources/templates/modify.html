@@ -47,16 +47,16 @@
         }
 
         .custom-btn:hover {
-            background-color: #ccc; /* Боја на позадина при прелистување */
+            background-color: #ccc;
         }
     </style>
 </head>
 <body>
 
 <div class="container mb-5 mt-5 text-center">
-    <a href="/admin/add-course" class="btn btn-block custom-btn" style="background-color: #add8e6;;">Додај курс</a>
-    <a href="/admin/add-professor" class="btn btn-block custom-btn" style="background-color: #adb5bd">Додај професор</a>
-    <a href="/admin/add-preference" class="btn btn-block custom-btn" style="background-color: #98fb98;">Додај преферанца</a>
+    <a th:href="@{/admin/add-course}" class="btn btn-block custom-btn" style="background-color: #add8e6;;">Додај курс</a>
+    <a th:href="@{/admin/add-professor}" class="btn btn-block custom-btn" style="background-color: #adb5bd">Додај професор</a>
+    <a th:href="@{/admin/add-preference}" class="btn btn-block custom-btn" style="background-color: #98fb98;">Додај преферанца</a>
 </div>
 
 </body>

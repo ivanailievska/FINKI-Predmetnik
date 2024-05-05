@@ -109,14 +109,14 @@ public class StudentServiceImplTest {
         student1.setRole(role1);
 
         // Mocking repository behavior
-        when(studentRepository.save(any(Student.class))).thenReturn(student);
-        when(studentRepository.findByIndexAndPassword(index, password)).thenReturn(Optional.empty());
+        when(studentRepository.save(any(Student.class))).thenReturn(student1);
+        when(studentRepository.findByIndexAndPassword(index1, password1)).thenReturn(Optional.empty());
 
-        when(passwordEncoder.encode(password)).thenReturn(password);
+        when(passwordEncoder.encode(password1)).thenReturn(password);
 
 
         // Call the method
-        Student registeredStudent = studentService.register(index, name, surname, password, repeatPassword, preference, program, role);
+        Student registeredStudent1 = studentService.register(index1, name1, surname1, password1, repeatPassword1, preference1, program1, role1);
 
         // Verify the method calls
         verify(studentRepository, times(1)).save(any(Student.class));
@@ -124,14 +124,14 @@ public class StudentServiceImplTest {
 
 
         // Assertions
-        assertNotNull(registeredStudent);
-        assertEquals(index, registeredStudent.getIndex());
-        assertEquals(name, registeredStudent.getName());
-        assertEquals(surname, registeredStudent.getSurname());
-        assertEquals(password, registeredStudent.getPassword());
-        assertEquals(preference, registeredStudent.getPreference());
-        assertEquals(program, registeredStudent.getProgram());
-        assertEquals(role, registeredStudent.getRole());
+        assertNotNull(registeredStudent1);
+        assertEquals(index1, registeredStudent1.getIndex());
+        assertEquals(name1, registeredStudent1.getName());
+        assertEquals(surname1, registeredStudent1.getSurname());
+        assertEquals(password1, registeredStudent1.getPassword());
+        assertEquals(preference1, registeredStudent1.getPreference());
+        assertEquals(program1, registeredStudent1.getProgram());
+        assertEquals(role1, registeredStudent1.getRole());
 
     }
 

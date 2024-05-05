@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PreferenceRepository extends JpaRepository<Preference, Integer> {
     Optional<Preference> findByName(String preferenceName);
+
+    void changePreference(Integer id, Integer index);
 }

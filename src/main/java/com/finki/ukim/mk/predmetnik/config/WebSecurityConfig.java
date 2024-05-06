@@ -1,5 +1,6 @@
 package com.finki.ukim.mk.predmetnik.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -7,26 +8,36 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder passwordEncoder;
-    private final CustomIndexPasswordAuthenticationProvider customIndexPasswordAuthenticationProvider;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public WebSecurityConfig(PasswordEncoder passwordEncoder, CustomIndexPasswordAuthenticationProvider customIndexPasswordAuthenticationProvider) {
-        this.passwordEncoder = passwordEncoder;
-        this.customIndexPasswordAuthenticationProvider = customIndexPasswordAuthenticationProvider;
-    }
+    @Autowired
+    private CustomIndexPasswordAuthenticationProvider customIndexPasswordAuthenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        RequestMatcher adminPages = request -> {
+            String path = request.getServletPath();
+            return path.startsWith("/admin/") || path.equals("/admin");
+        };
+
+        RequestMatcher publicPages = request -> {
+            String path = request.getServletPath();
+            return path.equals("/register");
+        };
+
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers(publicPages).permitAll()
+                .requestMatchers(adminPages).hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -46,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(customIndexPasswordAuthenticationProvider);
     }
 

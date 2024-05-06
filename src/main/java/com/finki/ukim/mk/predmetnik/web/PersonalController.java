@@ -3,24 +3,25 @@ package com.finki.ukim.mk.predmetnik.web;
 import com.finki.ukim.mk.predmetnik.models.Personal;
 import com.finki.ukim.mk.predmetnik.service.CourseService;
 import com.finki.ukim.mk.predmetnik.service.PersonalService;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/personal")
 public class PersonalController {
-	private final PersonalService personalService;
-	private final CourseService courseService;
 
-	public PersonalController(PersonalService personalService, CourseService courseService) {
-		this.personalService = personalService;
-		this.courseService = courseService;
-	}
+	@Autowired
+	private PersonalService personalService;
+
+	@Autowired
+	private CourseService courseService;
 
 	@GetMapping
 	public String getPersonalCoursesPage(Model model,

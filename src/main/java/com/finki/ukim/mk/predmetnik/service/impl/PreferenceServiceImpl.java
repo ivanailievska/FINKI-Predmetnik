@@ -5,22 +5,21 @@ import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.repository.PreferenceRepository;
 import com.finki.ukim.mk.predmetnik.repository.StudentRepository;
 import com.finki.ukim.mk.predmetnik.service.PreferenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class PreferenceServiceImpl implements PreferenceService {
 
-    private final PreferenceRepository preferenceRepository;
-    private final StudentRepository studentRepository;
+    @Autowired
+    private PreferenceRepository preferenceRepository;
 
-    public PreferenceServiceImpl(PreferenceRepository preferenceRepository,
-                                 StudentRepository studentRepository) {
-        this.preferenceRepository = preferenceRepository;
-        this.studentRepository = studentRepository;
-    }
+    @Autowired
+    private StudentRepository studentRepository;
 
     @Override
     public List<Preference> findAll() {
@@ -29,9 +28,9 @@ public class PreferenceServiceImpl implements PreferenceService {
 
     @Override
     public void changePreference(Integer id, Integer index) {
-        Student student = this.studentRepository.findById(index).get();
-        Preference preference = this.preferenceRepository.findById(id).get();
-        student.setPreference(preference);
+        Student student = this.studentRepository.findById(index).orElse(null);
+        Preference preference = this.preferenceRepository.findById(id).orElse(null);
+        Objects.requireNonNull(student).setPreference(preference);
         this.studentRepository.save(student);
     }
 

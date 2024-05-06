@@ -1,5 +1,9 @@
 package com.finki.ukim.mk.predmetnik.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,12 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Course {
 
     @Id
@@ -31,17 +36,6 @@ public class Course {
 
     @Transient
     private boolean myCourse;
-
-    public Course() {
-    }
-
-    public Course(Integer ID, String name, Integer year, List<Comment> comments) {
-        this.ID = ID;
-        this.name = name;
-        this.year = year;
-        this.comments = comments;
-        this.myCourse = false;
-    }
 
     public Course(String courseName, Integer year) {
         this.name = courseName;

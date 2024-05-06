@@ -1,16 +1,21 @@
 package com.finki.ukim.mk.predmetnik.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import lombok.Data;
 import java.util.List;
 
-@Data
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Preference {
 
     @Id
@@ -21,11 +26,6 @@ public class Preference {
 
     @ManyToMany
     private List<Course> suggestedCourses;
-
-    public Preference() {
-    }
-
-
 
     public Preference(String preferenceName, List<Course> coursesInPreference) {
         this.name = preferenceName;

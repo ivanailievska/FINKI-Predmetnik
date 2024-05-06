@@ -7,6 +7,7 @@ import com.finki.ukim.mk.predmetnik.repository.CourseRepository;
 import com.finki.ukim.mk.predmetnik.repository.PersonalRepository;
 import com.finki.ukim.mk.predmetnik.repository.StudentRepository;
 import com.finki.ukim.mk.predmetnik.service.PersonalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,15 +15,15 @@ import java.util.List;
 
 @Service
 public class PersonalServiceImpl implements PersonalService {
-    private final PersonalRepository personalRepository;
-    private final StudentRepository studentRepository;
-    private final CourseRepository courseRepository;
 
-    public PersonalServiceImpl(PersonalRepository personalRepository, StudentRepository studentRepository, CourseRepository courseRepository) {
-        this.personalRepository = personalRepository;
-        this.studentRepository = studentRepository;
-        this.courseRepository = courseRepository;
-    }
+    @Autowired
+    private PersonalRepository personalRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
     public List<Course> listAllCoursesInPersonal(Integer id) {

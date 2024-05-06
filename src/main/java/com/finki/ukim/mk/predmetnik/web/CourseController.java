@@ -8,30 +8,32 @@ import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.service.CourseService;
 import com.finki.ukim.mk.predmetnik.service.PersonalService;
 import com.finki.ukim.mk.predmetnik.service.StudentService;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping({"/", "/courses"})
 public class CourseController {
-	private final CourseService courseService;
-	private final StudentService studentService;
-	private final PersonalService personalService;
 
-	public CourseController(CourseService courseService, StudentService studentService, PersonalService personalService) {
-		this.courseService = courseService;
-		this.studentService = studentService;
-		this.personalService = personalService;
-	}
+	@Autowired
+	private CourseService courseService;
+
+	@Autowired
+	private StudentService studentService;
+
+	@Autowired
+	private PersonalService personalService;
 
 	@GetMapping()
 	public String getCoursesPage(@PathVariable(required = false) String error,
@@ -46,7 +48,7 @@ public class CourseController {
 		List<Course> courses = this.courseService.findAll()
 		                                         .stream()
 		                                         .filter(course -> !this.personalService.getActivePersonal(Integer.parseInt(request.getRemoteUser())).getPersonalCourses().contains(course))
-		                                         .sorted(Comparator.comparing(course -> course.getYear()))
+		                                         .sorted(Comparator.comparing(Course::getYear))
 		                                         .collect(Collectors.toList());
 		model.addAttribute("courses", courses);
 		model.addAttribute("bodyContent", "courses");
@@ -57,8 +59,8 @@ public class CourseController {
 	public String detailCoursePage(@PathVariable Integer id,
 	                               Model model,
 	                               HttpServletRequest request) {
-		Course course = this.courseService.findById(id).get();
-		List<Comment> commentsForCourse = course.getComments()
+		Course course = this.courseService.findById(id).orElse(null);
+		List<Comment> commentsForCourse = Objects.requireNonNull(course).getComments()
 		                                        .stream()
 		                                        .sorted(Comparator.comparing(comment -> comment.getTimestamp()))
 		                                        .collect(Collectors.toList());
@@ -82,8 +84,8 @@ public class CourseController {
 	@GetMapping("/filtered")
 	public String getFilteredPage(Model model,
 	                              HttpServletRequest request) {
-		Student currentStudent = this.studentService.findById(Integer.parseInt(request.getRemoteUser())).get();
-		Preference preference = currentStudent.getPreference();
+		Student currentStudent = this.studentService.findById(Integer.parseInt(request.getRemoteUser())).orElse(null);
+		Preference preference = Objects.requireNonNull(currentStudent).getPreference();
 		Program program = currentStudent.getProgram();
 
 		int year = currentStudent.getYear();

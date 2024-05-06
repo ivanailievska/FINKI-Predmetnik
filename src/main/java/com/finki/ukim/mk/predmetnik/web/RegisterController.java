@@ -10,6 +10,7 @@ import com.finki.ukim.mk.predmetnik.models.Role;
 import com.finki.ukim.mk.predmetnik.service.PreferenceService;
 import com.finki.ukim.mk.predmetnik.service.ProgramService;
 import com.finki.ukim.mk.predmetnik.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +24,14 @@ import java.util.List;
 @RequestMapping("/register")
 public class RegisterController {
 
-    private final PreferenceService preferenceService;
-    private final ProgramService programService;
-    private final StudentService studentService;
+    @Autowired
+    private PreferenceService preferenceService;
 
-    public RegisterController(PreferenceService preferenceService, ProgramService programService, StudentService studentService) {
-        this.preferenceService = preferenceService;
-        this.programService = programService;
-        this.studentService = studentService;
-    }
+    @Autowired
+    private ProgramService programService;
+
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping
     public String getForm(Model model) {
@@ -56,8 +56,8 @@ public class RegisterController {
             return "redirect:/register?StudentAlreadyExists";
 
         if (password.equals(repeat)) {
-            Preference preference = this.preferenceService.findById(preferenceId).get();
-            Program program = this.programService.findById(programId).get();
+            Preference preference = this.preferenceService.findById(preferenceId).orElse(null);
+            Program program = this.programService.findById(programId).orElse(null);
             this.studentService.register(Integer.parseInt(index), name, surname, password, repeat, preference, program, role);
             return "redirect:/login";
         } else {

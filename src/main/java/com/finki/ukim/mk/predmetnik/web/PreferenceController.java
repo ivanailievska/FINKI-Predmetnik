@@ -1,6 +1,7 @@
 package com.finki.ukim.mk.predmetnik.web;
 
 import com.finki.ukim.mk.predmetnik.service.PreferenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/preference")
 public class PreferenceController {
-    private final PreferenceService preferenceService;
 
-    public PreferenceController(PreferenceService preferenceService) {
-        this.preferenceService = preferenceService;
-    }
+    @Autowired
+    private PreferenceService preferenceService;
 
     @GetMapping("/change")
     public String getChangePreference(Model model) {

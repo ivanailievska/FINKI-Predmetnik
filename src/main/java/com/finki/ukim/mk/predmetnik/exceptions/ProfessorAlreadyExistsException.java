@@ -1,4 +1,4 @@
-package com.finki.ukim.mk.predmetnik.exe;
+package com.finki.ukim.mk.predmetnik.exceptions;
 
 public class ProfessorAlreadyExistsException extends Exception {
 }

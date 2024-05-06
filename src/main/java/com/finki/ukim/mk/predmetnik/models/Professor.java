@@ -1,16 +1,18 @@
 package com.finki.ukim.mk.predmetnik.models;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import lombok.Data;
-
 import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Professor {
 
     @Id
@@ -25,16 +27,6 @@ public class Professor {
 
     @ManyToMany
     private List<Course> teachingCourses;
-
-    public Professor() {
-    }
-
-    public Professor(Integer ID, String name, String surname, String link) {
-        this.ID = ID;
-        this.name = name;
-        this.surname = surname;
-        this.link = link;
-    }
 
     public Professor(String firstName, String lastName, String link, List<Course> courses) {
         this.name = firstName;

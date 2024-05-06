@@ -9,6 +9,7 @@ import com.finki.ukim.mk.predmetnik.models.Role;
 import com.finki.ukim.mk.predmetnik.models.Student;
 import com.finki.ukim.mk.predmetnik.repository.StudentRepository;
 import com.finki.ukim.mk.predmetnik.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,13 +21,11 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository studentRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private StudentRepository studentRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
-        this.studentRepository = studentRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Student> findAll() {

@@ -1,18 +1,22 @@
 package com.finki.ukim.mk.predmetnik.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import lombok.Data;
-
 import java.util.List;
 
-@Data
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Personal {
 
 	@Id
@@ -24,8 +28,6 @@ public class Personal {
 
 	@ManyToMany
 	private List<Course> personalCourses;
-
-	public Personal() {}
 
 	public Personal(Student owner, List<Course> personalCourses) {
 		this.owner = owner;

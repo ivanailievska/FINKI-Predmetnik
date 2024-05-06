@@ -1,16 +1,21 @@
 package com.finki.ukim.mk.predmetnik.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.ocpsoft.prettytime.PrettyTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.Data;
-import org.ocpsoft.prettytime.PrettyTime;
-
+import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Comment {
 
     @Id
@@ -27,43 +32,18 @@ public class Comment {
 
     private String authorName;
 
-    public Comment() {
-    }
-
-    public Comment(LocalDateTime timestamp, String body) {
-        this.timestamp = timestamp;
-        this.body = body;
-        this.likes = 0;
-        this.dislikes = 0;
-    }
-
-    public Comment(Integer ID, LocalDateTime timestamp, String body, Integer likes, Integer dislikes, String authorName) {
-        this.ID = ID;
-        this.timestamp = timestamp;
-        this.body = body;
-        this.likes = likes;
-        this.dislikes = dislikes;
-        this.authorName = authorName;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
-    public Integer getDislikes() {
-        return dislikes;
-    }
-
-    public void setDislikes(Integer dislikes) {
-        this.dislikes = dislikes;
-    }
-
     public String getTimestampFormatted() {
         PrettyTime p = new PrettyTime();
         return p.format(this.timestamp);
     }
+
+    @PrePersist
+    public void onSave() {
+        if (likes == null) {
+            likes = 0;
+        }
+        if (dislikes == null) {
+            dislikes = 0;
+        }
     }
+}

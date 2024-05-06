@@ -3,6 +3,7 @@ package com.finki.ukim.mk.predmetnik.service.impl;
 import com.finki.ukim.mk.predmetnik.models.Course;
 import com.finki.ukim.mk.predmetnik.repository.CourseRepository;
 import com.finki.ukim.mk.predmetnik.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +11,9 @@ import java.util.Optional;
 
 @Service
 public class CourseServiceImpl  implements CourseService {
-    private final CourseRepository courseRepository;
 
-    public CourseServiceImpl(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
-    }
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
     public List<Course> findAll() {

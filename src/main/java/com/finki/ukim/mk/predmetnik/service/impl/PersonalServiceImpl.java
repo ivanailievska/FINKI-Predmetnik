@@ -1,5 +1,6 @@
 package com.finki.ukim.mk.predmetnik.service.impl;
 
+import com.finki.ukim.mk.predmetnik.exceptions.InvalidArgumentsException;
 import com.finki.ukim.mk.predmetnik.models.Course;
 import com.finki.ukim.mk.predmetnik.models.Personal;
 import com.finki.ukim.mk.predmetnik.models.Student;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonalServiceImpl implements PersonalService {

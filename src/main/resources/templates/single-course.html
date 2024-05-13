@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${course.name}">Course Details</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgb(89, 153, 153, 0.2);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 1000px;
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+      margin: auto;
+      padding-left: 30px;
+      text-align: left;
+    }
+
+    h3 {
+      padding-left: 15px;
+      font-size: 26px;
+      font-weight: lighter;
+    }
+
+    .form-control {
+      width: 450px;
+      height: 77px;
+      border-radius: 15px;
+      border: none;
+    }
+
+    .form-outline input[type="text"]::placeholder {
+      font-weight: lighter;
+      font-size: 20px;
+      padding-left: 15px;
+    }
+
+    .form-outline input[type="number"]::placeholder {
+      font-weight: lighter;
+      font-size: 20px;
+      padding-left: 15px;
+    }
+
+    .btn {
+      margin-top: 25px;
+      margin-left: 5px;
+      background-color: #1C1C1C;
+      color: #FFFFFF;
+      border-radius: 15px;
+      width: 132px;
+      height: 35px;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .btn[value="Submit"] {
+      font-size: 12px;
+      font-weight: lighter;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Display course details -->
+  <div class="content">
+    <h1 th:text="${course.name}">Course Name</h1>
+    <p th:text="${course.description}">Course Description</p>
+    <!-- Add more details as needed -->
+  </div>
+
+  <!-- Display comments for the course -->
+  <div th:if="${comments}" class="content">
+    <h2>Comments</h2>
+    <div th:each="comment : ${comments}">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${comment.authorName}">Author Name</h5>
+          <p class="card-text" th:text="${comment.commentBody}">Comment Text</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:if="${noComments}" class="content">
+    <p>No comments yet.</p>
+  </div>
+
+  <!-- Add a form for adding new comments -->
+  <form action="/comments/add/{courseId}" method="post" class="content">
+    <input type="hidden" name="courseId" th:value="${course.id}">
+    <div class="form-group">
+      <label for="authorName">Your Name:</label>
+      <input type="text" class="form-control" id="authorName" name="authorName" placeholder="Enter your name" required>
+    </div>
+    <div class="form-group">
+      <label for="commentBody">Your Comment:</label>
+      <textarea class="form-control" id="commentBody" name="commentBody" rows="3" placeholder="Enter your comment" required></textarea>
+    </div>
+    <button type="submit" class="btn" value="Submit">Submit</button>
+  </form>
+
+  <!-- Add a link back to the course list page -->
+  <a th:href="@{/courses}" class="btn btn-secondary">Back to Courses</a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

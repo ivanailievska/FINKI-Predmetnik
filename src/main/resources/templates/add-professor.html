@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <br>
+  <h1>Professor Page</h1>
+  <br>
+
+  <!-- Form to add new professor -->
+  <form action="#" th:action="@{/professors}" method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname:</label>
+      <input type="text" class="form-control" id="surname" name="surname" required>
+    </div>
+    <div class="form-group">
+      <label for="link">Link:</label>
+      <input type="text" class="form-control" id="link" name="link" required>
+    </div>
+    <div class="form-group">
+      <label for="teachingCourses">Teaching Courses:</label>
+      <select class="form-control" id="teachingCourses" name="teachingCourses" multiple>
+        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <hr>
+
+  <!-- Display existing professors -->
+  <div th:if="${professors}">
+    <h2>Professors:</h2>
+    <div th:each="professor : ${professors}">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${professor.name + ' ' + professor.surname}"></h5>
+          <p class="card-text">
+            <a th:href="${professor.link}" th:text="${professor.link}"></a>
+          </p>
+          <p class="card-text">
+            <span>Teaching Courses:</span>
+            <span th:each="course : ${professor.teachingCourses}" th:text="${course.name} + ', '"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:unless="${professors}">
+    <p>No professors yet.</p>
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

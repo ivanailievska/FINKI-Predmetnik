@@ -1,72 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professor Page</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="fragments/images/logo-large.png"/>
+  <title>Додади</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #b7b5b5;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 1000px;
+      width: 100%;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .content {
+      margin:auto;
+
+      padding-left: 30px;
+      text-align: left;
+    }
+    h3 {
+      padding-left:15px;
+      font-size: 26px;
+      font-weight: lighter;
+    }
+    .form-control {
+      width: 450px;
+      height: 77px;
+      border-radius: 15px;
+      border: none;
+    }
+    .form-outline input[type="text"]::placeholder {
+      font-weight: lighter;
+      font-size: 20px;
+      padding-left:15px;
+    }
+    .form-outline input[type="number"]::placeholder {
+      font-weight: lighter;
+      font-size: 20px;
+      padding-left:15px;
+    }
+    .btn {
+      margin-top: 25px;
+      margin-left: 5px;
+      background-color: #1C1C1C;
+      color: #FFFFFF;
+      border-radius: 15px;
+      width: 132px;
+      height: 35px;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    .btn[value="Додади"] {
+      font-size: 12px;
+      font-weight: lighter;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .row{
+      margin-bottom: 20px;
+    }
+
+  </style>
 </head>
 <body>
-
 <div class="container">
-  <br>
-  <h1>Professor Page</h1>
-  <br>
+  <div class="content">
+    <h3>Додај професор</h3>
+    <form method="post" th:action="@{/admin/add-professor}">
+      <div class="row">
+        <div class="mb-4" style="display: inline-block;">
 
-  <!-- Form to add new professor -->
-  <form action="#" th:action="@{/professors}" method="post">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-      <label for="surname">Surname:</label>
-      <input type="text" class="form-control" id="surname" name="surname" required>
-    </div>
-    <div class="form-group">
-      <label for="link">Link:</label>
-      <input type="text" class="form-control" id="link" name="link" required>
-    </div>
-    <div class="form-group">
-      <label for="teachingCourses">Teaching Courses:</label>
-      <select class="form-control" id="teachingCourses" name="teachingCourses" multiple>
-        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+          <div class="form-outline">
+            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Име"/>
+            <label class="form-label" for="firstName"></label>
+          </div>
 
-  <hr>
+        </div>
+        <div class="mb-4" style="display: inline-block; ">
 
-  <!-- Display existing professors -->
-  <div th:if="${professors}">
-    <h2>Professors:</h2>
-    <div th:each="professor : ${professors}">
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title" th:text="${professor.name + ' ' + professor.surname}"></h5>
-          <p class="card-text">
-            <a th:href="${professor.link}" th:text="${professor.link}"></a>
-          </p>
-          <p class="card-text">
-            <span>Teaching Courses:</span>
-            <span th:each="course : ${professor.teachingCourses}" th:text="${course.name} + ', '"></span>
-          </p>
+          <div class="form-outline">
+            <input type="number" name="lastName" id="lastName" class="form-control" placeholder="Презиме"/>
+            <label class="form-label" for="lastName" ></label>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div th:unless="${professors}">
-    <p>No professors yet.</p>
-  </div>
+      <div class="row">
+        <div class="mb-4" style="display: inline-block;">
 
+          <div class="form-outline">
+            <input type="text" name="link" id="link" class="form-control" placeholder="Линк до CV"/>
+            <label class="form-label" for="lastName"></label>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div>
+          <label class="form-label select-label">Одбери курсеви кои ги предава во моментот</label>
+        </div>
+        <div>
+          <select class="select" multiple name="courses">
+            <option th:each="course : ${courses}" th:value="${course.getID()}" th:text="${course.getName()}">One</option>
+          </select>
+        </div>
+        <div class="mt-4">
+          <input class="btn btn-warning btn-lg" type="submit" value="Додади"/>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-
-<!-- Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

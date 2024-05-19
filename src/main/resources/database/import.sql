@@ -46,3 +46,45 @@ INSERT INTO predmetnik.personal (ID, owner_index) VALUES
                                                       (3, 1),
                                                       (4, 1),
                                                       (5, 1);
+
+INSERT INTO predmetnik.course_comments (course_id, comments_id) VALUES
+                                                                    (1, 1),
+                                                                    (2, 2),
+                                                                    (3, 3),
+                                                                    (4, 4),
+                                                                    (5, 5);
+
+INSERT INTO predmetnik.personal_personal_courses (personal_id, personal_courses_id) VALUES
+                                                                                        (1, 1),
+                                                                                        (2, 2),
+                                                                                        (3, 3),
+                                                                                        (4, 4),
+                                                                                        (5, 5);
+
+INSERT INTO predmetnik.preference_suggested_courses (preference_id, suggested_courses_id) VALUES
+                                                                                              (1, 1),
+                                                                                              (2, 2),
+                                                                                              (3, 3),
+                                                                                              (4, 4),
+                                                                                              (5, 5);
+
+INSERT INTO predmetnik.professor_teaching_courses (professor_id, teaching_courses_id) VALUES
+                                                                                          (1, 1),
+                                                                                          (2, 2),
+                                                                                          (3, 3),
+                                                                                          (4, 4),
+                                                                                          (5, 5);
+
+INSERT INTO predmetnik.program_courses_in_program (program_id, courses_in_program_id) VALUES
+                                                                                          (1, 1),
+                                                                                          (2, 2),
+                                                                                          (3, 3),
+                                                                                          (4, 4),
+                                                                                          (5, 5);
+
+INSERT INTO predmetnik.program_courses_in_program (program_id, courses_in_program_id) VALUES
+                                                                                          (1, 1),
+                                                                                          (2, 2),
+                                                                                          (3, 3),
+                                                                                          (4, 4),
+                                                                                          (5, 5);

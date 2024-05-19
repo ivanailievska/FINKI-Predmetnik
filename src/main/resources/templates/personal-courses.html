@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="fragments/images/logo-large.png"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Мои предмети</title>
+  <style>
+    .card {
+      background-color: #ddd;
+      border-radius: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      margin: 10px;
+      overflow: hidden;
+      border: none
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .list-group-item{
+      background-color: #ddd;
+      border: none;
+    }
+
+    .card-header {
+      background-color: #6D9BC3;
+      color: white;
+      padding: 20px;
+      border: none
+    }
+
+    .card-footer {
+      background-color: #ddd;
+      border-top: 0;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .btn-primary {
+      background-color: #6D9BC3;
+      border: none;
+    }
+
+    .btn-secondary {
+      background-color: #6D9BC3;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mb-4">
+  <div class="row">
+    <div class="table-responsive">
+      <div class="container">
+        <section id="services" class="services section-bg">
+          <div class="container">
+            <p th:if="${limitReached == true}">Веќе имате додадено 10 предмети!</p>
+            <div class="row">
+
+              <div th:each="course : ${courses}"
+                   class="col-lg-4 col-md-6 mt-4 m4-md-0">
+                <div class="card">
+                  <div class="card-header h4 text-center"
+                       th:text="${course.getName()}">
+
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Коментари (<span
+                              th:text="${course.getComments().size()}"></span>)</li>
+                      <li class="list-group-item">Година: <i th:text="${course.getYear()}"></i></li>
+                      <li class="list-group-item">Професори:
+                        <ul class="list-unstyled">
+                          <li class="d-inline" th:each="professor : ${course.getProfessor()}">
+                            <i><a th:text="${professor.getFullName()}"
+                                  th:href="${professor.getLink()}" target="_blank"></a></i>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-footer">
+                    <div class="row justify-content-center">
+                      <a class="card-link btn-sm btn-primary text-white text-center col-3 rounded-pill mx-2"
+                         th:href="@{'/courses/details/{id}' (id=${course.getID()})}">Детали</a>
+                      <form th:method="POST"
+                            th:action="@{'/personal/delete-course/{id}' (id=${course.getID()})}"
+                            class="col">
+                        <button type="submit"
+                                class="card-link btn-sm btn-danger text-white col rounded-pill mx-2">
+                          Избриши предмет
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

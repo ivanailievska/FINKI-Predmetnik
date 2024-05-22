@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="fragments/images/logo-large.png"/>
+    <link rel="icon" href="/images/logo-large.png"/>
     <title>Модифицирај</title>
     <style>
-        body {
+        .admin-outside {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        .admin {
             background-color: #ddd;
             padding: 40px;
             border-radius: 10px;
@@ -51,9 +48,9 @@
         }
     </style>
 </head>
-<body>
+<body class="admin-outside">
 
-<div class="container mb-5 mt-5 text-center">
+<div class="container mb-5 mt-5 text-center admin">
     <a th:href="@{/admin/add-course}" class="btn btn-block custom-btn" style="background-color: #add8e6;;">Додај курс</a>
     <a th:href="@{/admin/add-professor}" class="btn btn-block custom-btn" style="background-color: #adb5bd">Додај професор</a>
     <a th:href="@{/admin/add-preference}" class="btn btn-block custom-btn" style="background-color: #98fb98;">Додај преферанца</a>

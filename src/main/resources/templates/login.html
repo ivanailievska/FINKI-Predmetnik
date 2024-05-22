@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="fragments/images/logo-large.png">
+    <link rel="icon" href="/static/images/logo-large.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Login</title>
     <style>
@@ -16,7 +16,10 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url('fragments/images/header-bg.png');
+            background-image: url('/images/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
@@ -25,8 +28,7 @@
         }
 
         .container {
-            background-image: url('fragments/images/header-bg.png');
-            background-color: rgba(0, 51, 102, 0.2);
+            background-color: rgb(109, 155, 195 , 0.4);
             background-blend-mode: overlay;
             background-size: cover;
             background-position: center;
@@ -79,6 +81,7 @@
 
         .text-center a {
             color: white;
+            cursor: pointer;
         }
     </style>
 </head>

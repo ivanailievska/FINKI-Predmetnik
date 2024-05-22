@@ -23,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         RequestMatcher adminPages = request -> {
             String path = request.getServletPath();
             return path.startsWith("/admin/") || path.equals("/admin");
@@ -36,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/images/**", "/css/**", "/js/**", "/static/**").permitAll()
                 .requestMatchers(publicPages).permitAll()
                 .requestMatchers(adminPages).hasRole("ADMIN")
                 .anyRequest()

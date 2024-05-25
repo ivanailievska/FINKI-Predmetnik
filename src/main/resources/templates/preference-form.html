@@ -5,28 +5,27 @@
     <link rel="icon" href="fragments/images/logo-large.png"/>
     <title>Додади преференца</title>
     <style>
-        body {
+        .intro {
             margin: 0;
             padding: 0;
-            font-family: Inter, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
+            font-family: Arial, sans-serif;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        .contain {
             background-color: rgb(66, 255, 0, 0.2);
             padding:40px;
             border-radius: 10px;
-            width: 1000px;
+            width: 100%;
+            max-width: 1000px;
             height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             text-align: left;
+            margin-top: 100px;
         }
         h3 {
             padding-left: 15px;
@@ -35,6 +34,7 @@
         }
         .wrapper {
             padding: 40px;
+
         }
         .form-control {
             width: 100%;
@@ -64,7 +64,7 @@
             font-size: 16px;
             padding: 10px;
         }
-        .btn {
+        .but {
             margin-top: 25px;
             margin-left: 5px;
             background-color: #1C1C1C;
@@ -82,21 +82,21 @@
             letter-spacing: 2px;
         }
     </style>
-    <body>
-    <section class="intro">
-        <div class="container">
-            <div class="wrapper">
-             <h3 class="preference">Додади преференца</h3>
+<body>
+<section class="intro">
+    <div class="container contain">
+        <div class="wrapper">
+            <h3 class="preference">Додади преференца</h3>
 
             <form method="post" th:action="@{/admin/add-preference}">
 
                 <div class="row">
-                        <div class="form-outline">
-                            <label class="form-label" for="preferenceName"></label>
+                    <div class="form-outline">
+                        <label class="form-label" for="preferenceName"></label>
 
-                            <input type="text" name="preferenceName" id="preferenceName" placeholder="Име"
-                                                       class="form-control"/>
-                        </div>
+                        <input type="text" name="preferenceName" id="preferenceName" placeholder="Име"
+                               class="form-control"/>
+                    </div>
                 </div>
                 <div class="row">
                     <div>
@@ -108,13 +108,13 @@
                         </select>
                     </div>
                     <div class="mt-4">
-                        <input class="btn btn-warning btn-lg" type="submit" value="Додади"/>
+                        <input class="btn btn-warning btn-lg but" type="submit" value="Додади"/>
                     </div>
                 </div>
 
             </form>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>

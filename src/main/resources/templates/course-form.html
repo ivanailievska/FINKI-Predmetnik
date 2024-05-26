@@ -5,37 +5,33 @@
     <link rel="icon" href="fragments/images/logo-large.png"/>
     <title>Додади</title>
     <style>
-        body {
+        .body {
             margin: 0;
             padding: 0;
-            font-family: Inter, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
+            font-family: Arial, sans-serif;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+
         }
 
-        .container {
+        .contain {
             background-color: rgb(89, 153, 153, 0.2);
             padding: 40px;
             border-radius: 10px;
-            text-align: center;
+            text-align: left;
             max-width: 1000px;
             width: 100%;
             height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 100px;
         }
-        .content {
-            margin:auto;
+        .cont {
+            padding: 40px;
+        }
 
-            padding-left: 30px;
-            text-align: left;
-        }
         h3 {
             padding-left:15px;
             font-size: 26px;
@@ -57,7 +53,7 @@
             font-size: 20px;
             padding-left:15px;
         }
-        .btn {
+        .but {
             margin-top: 25px;
             margin-left: 5px;
             background-color: #1C1C1C;
@@ -79,9 +75,9 @@
 
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="content">
+<body class="body">
+<div class="container contain">
+    <div class="content cont">
     <h3>Додај курс</h3>
     <form method="post" th:action="@{/admin/add-course}">
         <div class="row">
@@ -100,7 +96,7 @@
                     <label class="form-label" for="year" ></label>
                 </div>
             </div>
-            <input class="btn btn-warning btn-lg" type="submit" value="Додади">
+            <input class="btn btn-warning btn-lg but" type="submit" value="Додади">
         </div>
     </form>
     </div>

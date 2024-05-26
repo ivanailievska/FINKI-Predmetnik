@@ -16,11 +16,10 @@
             height: 100vh;
         }
 
-        .container {
+        .preference {
             background-color: #ddd;
             padding: 40px;
             border-radius: 10px;
-            text-align: center;
             max-width: 1000px;
             width: 100%;
             height: 400px;
@@ -57,21 +56,28 @@
 
         }
 
-        .btn {
-            background-color: #1C1C1C;
-            color: #FFFFFF;
-            border-radius: 15px;
+        .but {
+            margin-top: 25px;
+            margin-left: 5px;
+            width: 132px;
+            height: 35px;
             border: none;
-            cursor: pointer;
             padding: 10px 20px;
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .btn[value="Промени"] {
+            font-size: 12px;
+            font-weight: lighter;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
 
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container preference">
     <form method="post" th:action="@{/preference/change}">
         <div class="form-group">
             <h3><label class="form-label" for="preference">Преференци</label></h3>
@@ -82,7 +88,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn">ПРОМЕНИ</button>
+            <button type="submit" class="btn btn-dark btn-lg rounded-pill but" value="Промени">ПРОМЕНИ</button>
         </div>
     </form>
 </div>

@@ -24,29 +24,6 @@
           border: none;
         }
 
-        .card-header {
-            background-color: #6D9BC3;
-            color: white;
-            padding: 20px;
-            border: none
-        }
-
-        .card-footer {
-          background-color: #ddd;
-          border-top: 0;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-
-        .btn-primary {
-            background-color: #6D9BC3;
-            border: none;
-        }
-
-        .btn-secondary {
-            background-color: #6D9BC3;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -61,8 +38,8 @@
 
                             <div th:each="course : ${courses}"
                                     class="col-lg-4 col-md-6 mt-4 m4-md-0">
-                                <div class="card">
-                                    <div class="card-header h4 text-center"
+                                <div class="card " >
+                                    <div class="card-header h4 text-center bg-primary text-left text-white"
                                          th:text="${course.getName()}">
 
                                     </div>

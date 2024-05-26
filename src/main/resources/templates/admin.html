@@ -27,9 +27,10 @@
             justify-content: center;
             align-items: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 100px;
         }
 
-        .custom-btn {
+        .but {
             color: #333;
             border-radius: 20px;
             border: none;
@@ -43,17 +44,18 @@
             line-height: 40px;
         }
 
-        .custom-btn:hover {
-            background-color: #ccc;
+        .but:hover {
+            background-color: #f8f9fa;
         }
+
     </style>
 </head>
 <body class="admin-outside">
 
 <div class="container mb-5 mt-5 text-center admin">
-    <a th:href="@{/admin/add-course}" class="btn btn-block custom-btn" style="background-color: #add8e6;;">Додај курс</a>
-    <a th:href="@{/admin/add-professor}" class="btn btn-block custom-btn" style="background-color: #adb5bd">Додај професор</a>
-    <a th:href="@{/admin/add-preference}" class="btn btn-block custom-btn" style="background-color: #98fb98;">Додај преферанца</a>
+    <a th:href="@{/admin/add-course}" class="btn btn-lg btn-block but" style="background-color: #add8e6;;">Додај курс</a>
+    <a th:href="@{/admin/add-professor}" class="btn btn-lg btn-block but" style="background-color: #adb5bd">Додај професор</a>
+    <a th:href="@{/admin/add-preference}" class="btn btn-lg btn-block but" style="background-color: #98fb98;">Додај преферанца</a>
 </div>
 
 </body>

@@ -2,31 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="fragments/images/logo-large.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Детали</title>
     <style>
-        .sec {
-            background-color: rgb(109, 155, 195, 0.2);
+        .out {
+            margin: auto;
+            padding: 0;
+            font-family: Arial, sans-serif;
             width: 1000px;
-            margin:auto;
-            border-radius: 15px;
-            height: 400px;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            margin-top: 50px;
         }
+
+        .details-page {
+            background-color: rgb(109, 155, 195, 0.2);
+            padding:40px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 100px;
+            margin-bottom: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
         p {
             font-size: 22px;
+        }
 
+        #title {
+            font-size: 28px;
         }
     </style>
-
-<section class="sec">
+<body>
+<div class="out">
+<section class="details-page">
     <div class="container my-2 py-2">
-        <p>Сите коментари за
+        <p id="title">Сите коментари за
             <th:block th:text="${course.getName()}"></th:block>
         </p>
     </div>
@@ -74,7 +85,7 @@
                             </form>
                         </div>
                     </div>
-                    <!--   <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;"
+                    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;"
                          th:if="${myCourse == true}">
                         <form method="post" th:action="@{/comments/add/{course} (course=${course.getID()})}">
                             <div class="d-flex flex-start w-100">
@@ -89,9 +100,11 @@
                                 <button class="btn btn-primary btn-sm">Постави</button>
                             </div>
                         </form>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+</div>
+</body>
